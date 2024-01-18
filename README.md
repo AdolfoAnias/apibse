@@ -1,10 +1,13 @@
+
+## Crear base de Dato llamada apibse en mysql
 ## Crear fichero .env con la siguiente informacion
 
-APP_NAME=Laravel
-APP_ENV=local
-APP_KEY=base64:U3xVGC5ZDu0in1m2o4XWM4H/p93GBtHbEFxMSamfMzw=
-APP_DEBUG=true
-APP_URL=http://localhost
+<p align="center">
+<a>APP_NAME=Laravel</a>
+<a>APP_ENV=local</a>
+<a>APP_KEY=base64:U3xVGC5ZDu0in1m2o4XWM4H/p93GBtHbEFxMSamfMzw=</a>
+<a>APP_DEBUG=true</a>
+<a>APP_URL=http://localhost</a>
 
 LOG_CHANNEL=stack
 LOG_DEPRECATIONS_CHANNEL=null
@@ -58,3 +61,4 @@ VITE_PUSHER_HOST="${PUSHER_HOST}"
 VITE_PUSHER_PORT="${PUSHER_PORT}"
 VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
 VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+</p>
