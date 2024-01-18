@@ -20,21 +20,49 @@ class ProductSeeder extends Seeder
             [
                 'id' => 1,
                 'title' => $faker->name(),
-                'description' => 'Informatica General',
+                'description' => $faker->text,
                 'image' => 'prueba.jpg',
-                'price' => '10.0',
+                'price' => $faker->numberBetween($min = 15, $max = 100),
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'id' => 2,
                 'title' => $faker->name(),
-                'description' => 'Vasos General',
+                'description' => $faker->text,
                 'image' => 'vaso.jpg',
-                'price' => '20.0',
+                'price' => $faker->numberBetween($min = 15, $max = 100),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 3,
+                'title' => $faker->name(),
+                'description' => $faker->text,
+                'image' => 'vaso.jpg',
+                'price' => $faker->numberBetween($min = 15, $max = 100),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 4,
+                'title' => $faker->name(),
+                'description' => $faker->text,
+                'image' => 'vaso.jpg',
+                'price' => $faker->numberBetween($min = 15, $max = 100),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 5,
+                'title' => $faker->name(),
+                'description' => $faker->text,
+                'image' => 'vaso.jpg',
+                'price' => $faker->numberBetween($min = 15, $max = 100),
                 'created_at' => now(),
                 'updated_at' => now()
             ]
+            
         ];    
     
         foreach ($items as $item) {
