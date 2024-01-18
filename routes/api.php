@@ -26,8 +26,13 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::post('register', 'AuthController@register');  
     
     //Route::group(['middleware' => 'auth:api'], function() {
-        Route::get('logout', 'AuthController@login');
-        Route::get('user', 'AuthController@login');        
+        Route::get('logout', 'AuthController@login');       
+            
+        Route::get('user', 'UserController@index')->name('user.index');  
+        Route::get('user/{id}', 'UserController@show')->name('user.show');  
+        Route::post('user', 'UserController@store')->name('user.store');        
+        Route::put('user', 'UserController@update')->name('user.update');
+        Route::delete('user/{id}', 'UserController@destroy')->name('user.destroy');  
 
         Route::get('product', 'ProductController@index')->name('product.index');
         Route::get('product/{id}', 'ProductController@show')->name('product.show');  

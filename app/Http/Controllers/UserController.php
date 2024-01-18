@@ -2,33 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserSystem;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class UserSystemController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-    }
+        try {
+            $model = User::all();  
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+            return response()->json($model, 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage() . " " . $e->getLine() . " " . $e->getFile(),
+                'message' => trans('msgs.msg_error_model_no_exist'),
+                'type' => trans('msgs.type_error')
+            ], 500);
+        }                                                
     }
 
     /**
@@ -37,36 +32,17 @@ class UserSystemController extends Controller
     public function show($id)
     {
         try {
-            $model = UserSystem::find($id);  
+            $model = User::find($id);  
 
-            return response()->json([
-                    "data" => $model, 
-                    'type' => trans('msgs.type_success')
-                ], 200);            
+            return response()->json($model, 200);            
         } catch (\Exception $e) {
             return response()->json([
                 'error' => $e->getMessage() . " " . $e->getLine() . " " . $e->getFile(),
-                'message' => trans('msgs.msg_error_model_no_exist', ['model' => 'Team']),
+                'message' => trans('msgs.msg_error_model_no_exist'),
                 'type' => trans('msgs.type_error')
             ], 500);
         }                                        
 
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(UserSystem $userSystem)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, UserSystem $userSystem)
-    {
-        //
     }
 
     /**
@@ -75,16 +51,13 @@ class UserSystemController extends Controller
     public function destroy($id)
     {
         try {
-            $model = UserSystem::where('id','=', $id)->delete();
+            $model = User::where('id','=', $id)->delete();
 
-            return response()->json([
-                    "data" => $model, 
-                    'type' => trans('msgs.type_success')
-                ], 200);            
+            return response()->json($model, 200);            
         } catch (\Exception $e) {
             return response()->json([
                 'error' => $e->getMessage() . " " . $e->getLine() . " " . $e->getFile(),
-                'message' => trans('msgs.msg_error_model_no_exist', ['model' => 'Team']),
+                'message' => trans('msgs.msg_error_model_no_exist'),
                 'type' => trans('msgs.type_error')
             ], 500);
         }                                                

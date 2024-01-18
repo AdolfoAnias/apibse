@@ -19,18 +19,18 @@ class ProductSeeder extends Seeder
         $items = [            
             [
                 'id' => 1,
-                'titulo' => $faker->name(),
+                'title' => $faker->name(),
                 'description' => 'Informatica General',
-                'imagen' => 'prueba.jpg',
+                'image' => 'prueba.jpg',
                 'price' => '10.0',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'id' => 2,
-                'titulo' => $faker->name(),
+                'title' => $faker->name(),
                 'description' => 'Vasos General',
-                'imagen' => 'vaso.jpg',
+                'image' => 'vaso.jpg',
                 'price' => '20.0',
                 'created_at' => now(),
                 'updated_at' => now()

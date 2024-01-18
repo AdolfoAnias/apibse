@@ -19,7 +19,6 @@ class AuthController extends Controller
         $request->validate([
              'email' => 'required|string|email',
              'password' => 'required|string',
-             //'remember_me' => 'boolean'
         ]);  
         
         $credentials = request(['email', 'password']);
@@ -35,7 +34,6 @@ class AuthController extends Controller
         return response()->json([
           'access_token' => $token,
           'token_type' => 'Bearer',
-          //'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString()
         ]);  
     }
     
@@ -63,7 +61,7 @@ class AuthController extends Controller
  
     public function logout(Request $request)
     {
-        $token = $request->user()->token();
+        $token = Auth::user()->token();
         $token->revoke();
         $response = ['message' => 'You have been successfully logged out!'];
         

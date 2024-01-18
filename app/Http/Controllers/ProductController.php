@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -16,25 +17,15 @@ class ProductController extends Controller
         try {
             $model = Product::all();  
 
-            return response()->json([
-                    "data" => $model, 
-                    'type' => trans('msgs.type_success')
-                ], 200);            
+            return response()->json($model, 200);
+
         } catch (\Exception $e) {
             return response()->json([
                 'error' => $e->getMessage() . " " . $e->getLine() . " " . $e->getFile(),
-                'message' => trans('msgs.msg_error_model_no_exist', ['model' => 'Team']),
+                'message' => trans('msgs.msg_error_model_no_exist'),
                 'type' => trans('msgs.type_error')
             ], 500);
         }                                                
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -43,8 +34,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name'=>'required|max:30',
-            'label_id'=>'required',
+            'title'=>'required|max:60',
+            'description'=>'required',
+            'price'=>'required',
         ]);      
                 
         if($validator->fails()){
@@ -54,22 +46,27 @@ class ProductController extends Controller
                 'type' => trans('msgs.type_error')
             ], 422);
         }
+
+        if ($request->has('file')){
+            $file = $request->file('file');
+            $filename = $file->getClientOriginalName();
+            Storage::disk('public')->put($filename, file_get_contents($file));
+        }
         
         try {
             $model = Product::create(
             [
-                'name' => $request->name,
-                'label_id' => $request->label_id,
+                'image' => isset($request->file)? $filename:null,
+                'title' => $request->title,
+                'description' => $request->description,
+                'price' => $request->price
             ]);                         
 
-            return response()->json([
-                    "data" => $model, 
-                    'type' => trans('msgs.type_success')
-                ], 200);            
+            return response()->json($model, 200);            
         } catch (\Exception $e) {
             return response()->json([
                 'error' => $e->getMessage() . " " . $e->getLine() . " " . $e->getFile(),
-                'message' => trans('msgs.msg_error_model_no_exist', ['model' => 'Team']),
+                'message' => trans('msgs.msg_error_model_no_exist'),
                 'type' => trans('msgs.type_error')
             ], 422);
         }                                                        
@@ -83,33 +80,14 @@ class ProductController extends Controller
         try {
             $model = Product::find($id);  
 
-            return response()->json([
-                    "data" => $model, 
-                    'type' => trans('msgs.type_success')
-                ], 200);            
+            return response()->json($model, 200);            
         } catch (\Exception $e) {
             return response()->json([
                 'error' => $e->getMessage() . " " . $e->getLine() . " " . $e->getFile(),
-                'message' => trans('msgs.msg_error_model_no_exist', ['model' => 'Team']),
+                'message' => trans('msgs.msg_error_model_no_exist'),
                 'type' => trans('msgs.type_error')
             ], 500);
         }                                        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Product $product)
-    {
-        //
     }
 
     /**
@@ -120,14 +98,11 @@ class ProductController extends Controller
         try {
             $model = Product::where('id','=', $id)->delete();
 
-            return response()->json([
-                    "data" => $model, 
-                    'type' => trans('msgs.type_success')
-                ], 200);            
+            return response()->json($model, 200);            
         } catch (\Exception $e) {
             return response()->json([
                 'error' => $e->getMessage() . " " . $e->getLine() . " " . $e->getFile(),
-                'message' => trans('msgs.msg_error_model_no_exist', ['model' => 'Team']),
+                'message' => trans('msgs.msg_error_model_no_exist'),
                 'type' => trans('msgs.type_error')
             ], 500);
         }                                                
