@@ -1,5 +1,6 @@
 
 ## Crear base de Dato llamada apibse en mysql
+## En la raiz del proyecto existe el fichero "API BSE.postman_collection.json" para probar los servicios desde el Postman 
 ## Crear fichero .env con la siguiente informacion
 
 <p>
