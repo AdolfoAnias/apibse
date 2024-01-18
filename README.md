@@ -2,7 +2,7 @@
 ## Crear base de Dato llamada apibse en mysql
 ## Crear fichero .env con la siguiente informacion
 
-<p align="center">
+<p>
 <a>APP_NAME=Laravel</a>
 <a>APP_ENV=local</a>
 <a>APP_KEY=base64:U3xVGC5ZDu0in1m2o4XWM4H/p93GBtHbEFxMSamfMzw=</a>
